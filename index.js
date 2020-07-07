@@ -6,40 +6,41 @@ const apiProxy = httpProxy.createProxyServer({changeOrigin: true});
 const port = 3000;
 app.use(express.static('./public'));
 
+const justin = "http://13.57.228.197/";
+const sam = "http://13.52.76.182/";
+const matty = "https://trulia-matthew.herokuapp.com/";
+const kim = "http://13.56.248.150";
+
 //Justin
-const serverOne = "http://localhost:3003";
 app.all("/api/similarListings", function(req, res) {
     console.log(`redirecting to justin's server`);
-    apiProxy.web(req, res, {target: serverOne, changeOrigin: true});
+    apiProxy.web(req, res, {target: justin, changeOrigin: true});
 });
 app.all("/api/nearbyListings", function(req, res) {
     console.log(`redirecting to justin's server`);
-    apiProxy.web(req, res, {target: serverOne, changeOrigin: true});
+    apiProxy.web(req, res, {target: justin, changeOrigin: true});
 });
 
 // //Sam
-const serverTwo = "http://localhost:3001";
 app.all("/api/listings", function(req, res) {
     console.log(`redirecting to sam's server`);
-    apiProxy.web(req, res, {target: serverTwo, changeOrigin: true});
+    apiProxy.web(req, res, {target: sam, changeOrigin: true});
 });
 
 //Matt
-const serverThree = "http://localhost:7777";
 app.all("/reviews", function(req, res) {
     console.log(`redirecting to matt's server`);
-    apiProxy.web(req, res, {target: serverThree, changeOrigin: true});
+    apiProxy.web(req, res, {target: matty, changeOrigin: true});
 });
 app.all("/features", function(req, res) {
     console.log(`redirecting to matt's server`);
-    apiProxy.web(req, res, {target: serverThree, changeOrigin: true});
+    apiProxy.web(req, res, {target: matty, changeOrigin: true});
 });
 
 //Kim
-const serverFour = "http://localhost:3333";
 app.all("/api/home1", function(req, res) {
     console.log(`redirecting to kim's server`);
-    apiProxy.web(req, res, {target: serverFour, changeOrigin: true});
+    apiProxy.web(req, res, {target: kim, changeOrigin: true});
 });
 
 app.listen(port, () => console.log(`\nlistening at http://localhost:${port}`));
